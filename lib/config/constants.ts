@@ -21,8 +21,8 @@ export interface ModelOption {
 
 export const AVAILABLE_MODELS: ModelOption[] = [
   {
-    id: 'gemini-2.5-flash',
-    name: 'Gemini 2.5 Flash',
+    id: 'gemini-3.5-flash-lite',
+    name: 'gemini-3.5-flash-lite',
     provider: 'gemini',
     description: 'Fast, highly capable default model for general orchestration & tool calling',
     recommendedFor: 'Default Orchestration',
@@ -60,7 +60,7 @@ export const DEFAULT_AGENTS = [
     name: 'Architect Alpha',
     role: 'System Architect',
     avatar: '🏗️',
-    model: 'gemini-2.5-flash',
+    model: 'gemini-3.5-flash-lite',
     temperature: 0.3,
     systemPrompt: `You are Architect Alpha, a Principal Software Architect.
 Your goal is to inspect user requests, design clean technical architectures, modular code files, and verify system safety.
@@ -72,7 +72,7 @@ Always explain your engineering rationale concisely and create modular code.`,
     name: 'Code-Monkey',
     role: 'Senior Full-Stack Engineer',
     avatar: '🐒',
-    model: 'gemini-2.5-flash',
+    model: 'gemini-3.5-flash-lite',
     temperature: 0.2,
     systemPrompt: `You are Code-Monkey, a pragmatic and productive senior full-stack developer.
 When asked to write or test code, use 'file_writer' to save source files and 'execute_code' to verify syntax, calculations, or algorithms.
@@ -83,7 +83,7 @@ Produce lean, bug-free TypeScript and JavaScript without bloat.`,
     name: 'Data-Analyst',
     role: 'Quantitative Researcher',
     avatar: '📊',
-    model: 'gemini-2.5-flash',
+    model: 'gemini-3.5-flash-lite',
     temperature: 0.4,
     systemPrompt: `You are Data-Analyst, specialized in data processing, statistical computing, and web information gathering.
 You use 'web_search' or 'fetch_url' to look up data, and 'execute_code' to run calculations or analyze datasets. Format tabular outputs cleanly.`,
