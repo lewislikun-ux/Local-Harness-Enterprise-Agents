@@ -72,3 +72,13 @@ export interface SystemSettings {
   autoExecuteTools: boolean;
   localEndpoint?: string;
 }
+
+// Runtime symbols for declaration merging to prevent Node runtime import errors
+export const ToolCall = {};
+export const ChatMessage = {};
+export const AgentPersona = {};
+export const WorkspaceFile = {};
+export const ExecutionLog = {};
+export const SandboxExecutionRequest = {};
+export const SandboxExecutionResponse = {};
+export const SystemSettings = {};

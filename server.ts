@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
-import { createServer as createViteServer } from 'vite';
 import { chatRouter } from './server/routes/chat.ts';
 import { sandboxRouter } from './server/routes/sandbox.ts';
 import { recordLog } from './lib/logger.ts';
@@ -27,6 +26,7 @@ app.use('/api/sandbox', sandboxRouter);
 
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
@@ -50,6 +50,13 @@ async function startServer() {
   });
 }
 
-startServer().catch((err) => {
-  console.error('Failed to start server:', err);
-});
+// Only start the HTTP listener if not running in a serverless environment like Vercel
+if (!process.env.VERCEL) {
+  startServer().catch((err) => {
+    console.error('Failed to start server:', err);
+  });
+}
+
+export default app;
+export { app };
+

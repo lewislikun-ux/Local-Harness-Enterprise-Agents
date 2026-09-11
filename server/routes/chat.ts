@@ -1,9 +1,10 @@
-import { Router, Request, Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
 import { getLLMProvider } from '../../lib/ai/provider.ts';
 import { getVirtualFiles } from '../../lib/sandbox/executor.ts';
 import { getInternalLogs, recordLog } from '../../lib/logger.ts';
 
-export const chatRouter = Router();
+export const chatRouter = express.Router();
 
 chatRouter.post('/', async (req: Request, res: Response) => {
   const { messages, agent, settings } = req.body;

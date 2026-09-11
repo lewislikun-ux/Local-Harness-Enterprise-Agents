@@ -1,4 +1,5 @@
-import { FunctionDeclaration, Type } from '@google/genai';
+import { Type } from '@google/genai';
+import type { FunctionDeclaration } from '@google/genai';
 import { getGeminiClient } from './client.ts';
 import { dispatchSandboxTool } from '../sandbox/executor.ts';
 import { logGenAICall } from '../logger.ts';

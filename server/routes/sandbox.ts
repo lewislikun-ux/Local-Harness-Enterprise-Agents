@@ -1,4 +1,5 @@
-import { Router, Request, Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
 import {
   dispatchSandboxTool,
   getVirtualFiles,
@@ -8,7 +9,7 @@ import {
 } from '../../lib/sandbox/executor.ts';
 import { getInternalLogs } from '../../lib/logger.ts';
 
-export const sandboxRouter = Router();
+export const sandboxRouter = express.Router();
 
 // Execute a tool in the sandbox
 sandboxRouter.post('/execute', async (req: Request, res: Response) => {

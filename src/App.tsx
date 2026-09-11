@@ -101,11 +101,23 @@ export default function App() {
         }),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        throw new Error(data.error || 'Server returned an error');
+        const rawText = await res.text();
+        let errorDetail = `Server error (${res.status})`;
+        try {
+          const parsed = JSON.parse(rawText);
+          errorDetail = parsed.error || errorDetail;
+        } catch {
+          if (res.status === 404) {
+            errorDetail = 'API route not found (404). Verify that vercel.json and api/index.ts are deployed, and GEMINI_API_KEY is configured in Vercel settings.';
+          } else {
+            errorDetail = rawText.slice(0, 150) || errorDetail;
+          }
+        }
+        throw new Error(errorDetail);
       }
+
+      const data = await res.json();
 
       const assistantMsg: ChatMessage = {
         id: `msg-${Date.now()}-assistant`,
@@ -165,9 +177,11 @@ export default function App() {
           args: { code, language },
         }),
       });
-      const data = await res.json();
-      if (data.files) setWorkspaceFiles(data.files);
-      if (data.logs) setLogs(data.logs);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.files) setWorkspaceFiles(data.files);
+        if (data.logs) setLogs(data.logs);
+      }
     } catch (err) {
       console.error('Direct sandbox execution failed:', err);
     } finally {
@@ -183,11 +197,13 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ path, content }),
       });
-      const data = await res.json();
-      if (data.files) {
-        setWorkspaceFiles(data.files);
-        const saved = data.files.find((f: WorkspaceFile) => f.path === path);
-        if (saved) setActiveFile(saved);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.files) {
+          setWorkspaceFiles(data.files);
+          const saved = data.files.find((f: WorkspaceFile) => f.path === path);
+          if (saved) setActiveFile(saved);
+        }
       }
     } catch (err) {
       console.error('Failed to save file:', err);
@@ -199,11 +215,13 @@ export default function App() {
       const res = await fetch(`/api/sandbox/files/${encodeURIComponent(path)}`, {
         method: 'DELETE',
       });
-      const data = await res.json();
-      if (data.files) {
-        setWorkspaceFiles(data.files);
-        if (activeFile?.path === path) {
-          setActiveFile(data.files[0] || null);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.files) {
+          setWorkspaceFiles(data.files);
+          if (activeFile?.path === path) {
+            setActiveFile(data.files[0] || null);
+          }
         }
       }
     } catch (err) {
