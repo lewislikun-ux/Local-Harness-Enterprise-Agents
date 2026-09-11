@@ -21,7 +21,7 @@ export const AgentModal: React.FC<AgentModalProps> = ({
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [avatar, setAvatar] = useState('🤖');
-  const [model, setModel] = useState('gemini-2.5-flash');
+  const [model, setModel] = useState('gemini-3.5-flash-lite');
   const [temperature, setTemperature] = useState(0.3);
   const [systemPrompt, setSystemPrompt] = useState('');
 

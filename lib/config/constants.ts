@@ -4,7 +4,7 @@ export const APP_CONFIG = {
   appName: 'Local-First Agent Harness',
   version: '1.0.0',
   defaultProvider: 'gemini',
-  defaultModel: 'gemini-2.5-flash',
+  defaultModel: 'gemini-3.5-flash-lite',
   fallbackModel: 'gemini-3.8-flash',
   maxToolIterations: 6,
   executionTimeoutMs: 10000,
