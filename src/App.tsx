@@ -212,7 +212,7 @@ export default function App() {
 
   const handleDeleteFile = async (path: string) => {
     try {
-      const res = await fetch(`/api/sandbox/files/${encodeURIComponent(path)}`, {
+      const res = await fetch(`/api/sandbox/files?path=${encodeURIComponent(path)}`, {
         method: 'DELETE',
       });
       if (res.ok) {

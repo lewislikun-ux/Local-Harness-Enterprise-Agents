@@ -55,6 +55,15 @@ sandboxRouter.post('/files', (req: Request, res: Response) => {
   return res.json({ file, files: getVirtualFiles() });
 });
 
+sandboxRouter.delete('/files', (req: Request, res: Response) => {
+  const filePath = (req.query.path as string) || req.body?.path;
+  if (!filePath) {
+    return res.status(400).json({ error: 'Missing path parameter.' });
+  }
+  const success = deleteVirtualFile(filePath);
+  return res.json({ success, files: getVirtualFiles() });
+});
+
 sandboxRouter.delete('/files/:path(*)', (req: Request, res: Response) => {
   const filePath = req.params.path;
   const success = deleteVirtualFile(filePath);

@@ -222,9 +222,9 @@ GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
 APP_URL="http://localhost:3000"
 ```
 
-### Vercel Deployment
+### Vercel Serverless Deployment
 When deploying to Vercel:
-1. Ensure `GEMINI_API_KEY` is added to your Vercel Project Settings under **Environment Variables**.
-2. Vercel automatically detects `vercel.json` and routes all `/api/*` traffic to the serverless function in `api/index.ts`.
-3. The client SPA is served statically from `dist/` with client-side fallback.
+1. Configure `GEMINI_API_KEY` in your Vercel Project Settings under **Settings > Environment Variables**.
+2. Vercel automatically deploys standalone serverless functions from `/api/` (`/api/chat.ts`, `/api/health.ts`, `/api/sandbox/execute.ts`, `/api/sandbox/files.ts`, `/api/sandbox/logs.ts`).
+3. Client-side routes are mapped cleanly to `index.html` via `vercel.json` without interfering with `/api/*` endpoints.
 
