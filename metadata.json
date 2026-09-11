@@ -1,0 +1,6 @@
+{
+  "name": "Local-First Agent Harness",
+  "description": "Modular local-first multi-agent harness with sandboxed execution, tool calling, and model routing defaulting to Google Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
