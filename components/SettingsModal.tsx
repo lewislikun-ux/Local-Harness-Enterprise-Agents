@@ -70,7 +70,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   defaultModel:
                     e.target.value === 'local'
                       ? 'qwen-2.5-coder-local'
-                      : 'gemini-2.5-flash',
+                      : 'gemini-2.3-flash-lite',
                 })
               }
               className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-zinc-700"

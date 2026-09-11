@@ -37,7 +37,7 @@ export const AgentModal: React.FC<AgentModalProps> = ({
       setName('');
       setRole('');
       setAvatar('🤖');
-      setModel('gemini-2.5-flash');
+      setModel('gemini-3.5-flash-lite');
       setTemperature(0.3);
       setSystemPrompt(
         'You are an expert AI developer agent with access to sandboxed tools (file_writer, execute_code, web_search, fetch_url).'
